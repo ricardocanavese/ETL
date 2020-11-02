@@ -1,0 +1,1879 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/28/2020 10:14:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-G2EGOL0"
+  DTS:CreatorName="DESKTOP-G2EGOL0\ricar"
+  DTS:DTSID="{54661441-7936-4558-8877-D1AC2CB52BD8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="11274"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{085067D2-737D-4F82-8850-2504A1E615F6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.BDO_Poliza]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{16445104-DFEE-486C-A8EF-29B6064891B5}"
+      DTS:ObjectName="LocalHost.BDO_Poliza">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=BDO_Poliza;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.BDO_Poliza 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2CA08FE5-2C2E-46C6-92EF-6A52E6A78C20}"
+      DTS:ObjectName="LocalHost.BDO_Poliza 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=BDO_Poliza;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DW_Seguro_Total 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{94A098E9-B15C-407D-A283-51EC73689002}"
+      DTS:ObjectName="LocalHost.DW_Seguro_Total 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DW_Seguro_Total;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DW_Seguro_Total 2]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AF7BBC8D-0267-4694-BA29-353063BC7877}"
+      DTS:ObjectName="LocalHost.DW_Seguro_Total 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DW_Seguro_Total;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Dimension FT Productividad"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contenedor de secuencias"
+      DTS:DTSID="{F3633C5B-695D-4AFC-A497-39978AA7CB3A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dimension FT Productividad">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Dimension FT Productividad\Tarea Flujo de datos"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarea Flujo de datos"
+          DTS:DTSID="{189E96C7-4D4B-47B7-9CBF-7505B5B3B8FC}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Flujo de datos"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla"
+                  componentClassID="Microsoft.MergeJoin"
+                  contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+                  description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+                  name="Combinación de mezcla"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de combinación que se debe realizar."
+                      name="JoinType"
+                      typeConverter="JoinType">2</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el número de columnas de la clave de ordenación."
+                      name="NumKeyColumns">1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si los valores NULL se tratan como valores iguales."
+                      name="TreatNullsAsEqual">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                      name="MaxBuffersPerInput">5</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+                      hasSideEffects="true"
+                      name="Entrada izquierda de combinación de mezcla">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[id_poliza]"
+                          cachedDataType="i4"
+                          cachedName="id_poliza"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[id_poliza]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+                      hasSideEffects="true"
+                      name="Entrada derecha de combinación de mezcla">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[id_productor]"
+                          cachedDataType="i4"
+                          cachedName="id_productor"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Outputs[Salida de ordenación].Columns[id_productor]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
+                      isSorted="true"
+                      name="Salida de combinación de mezcla">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_poliza]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_poliza]"
+                          name="id_poliza"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="La columna de entrada asociada a esta columna de salida"
+                              name="InputColumnID">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[id_poliza]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_productor]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_productor]"
+                          name="id_productor">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="La columna de entrada asociada a esta columna de salida"
+                              name="InputColumnID">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[id_productor]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1"
+                  componentClassID="Microsoft.MergeJoin"
+                  contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+                  description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+                  name="Combinación de mezcla 1"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el tipo de combinación que se debe realizar."
+                      name="JoinType"
+                      typeConverter="JoinType">2</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el número de columnas de la clave de ordenación."
+                      name="NumKeyColumns">1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si los valores NULL se tratan como valores iguales."
+                      name="TreatNullsAsEqual">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                      name="MaxBuffersPerInput">5</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Inputs[Entrada izquierda de combinación de mezcla]"
+                      hasSideEffects="true"
+                      name="Entrada izquierda de combinación de mezcla">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Inputs[Entrada izquierda de combinación de mezcla].Columns[id_poliza]"
+                          cachedDataType="i4"
+                          cachedName="id_poliza"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Outputs[Salida de ordenación].Columns[id_poliza]" />
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Inputs[Entrada izquierda de combinación de mezcla].Columns[id_productor]"
+                          cachedDataType="i4"
+                          cachedName="id_productor"
+                          cachedSortKeyPosition="2"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Outputs[Salida de ordenación].Columns[id_productor]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Inputs[Entrada derecha de combinación de mezcla]"
+                      hasSideEffects="true"
+                      name="Entrada derecha de combinación de mezcla">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Inputs[Entrada derecha de combinación de mezcla].Columns[id_tiempo]"
+                          cachedDataType="i4"
+                          cachedName="id_tiempo"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación].Columns[id_tiempo]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla]"
+                      isSorted="true"
+                      name="Salida de combinación de mezcla">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla].Columns[id_poliza]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla].Columns[id_poliza]"
+                          name="id_poliza"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="La columna de entrada asociada a esta columna de salida"
+                              name="InputColumnID">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Inputs[Entrada izquierda de combinación de mezcla].Columns[id_poliza]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla].Columns[id_productor]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla].Columns[id_productor]"
+                          name="id_productor">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="La columna de entrada asociada a esta columna de salida"
+                              name="InputColumnID">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Inputs[Entrada izquierda de combinación de mezcla].Columns[id_productor]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla].Columns[id_tiempo]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla].Columns[id_tiempo]"
+                          name="id_tiempo">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="La columna de entrada asociada a esta columna de salida"
+                              name="InputColumnID">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Inputs[Entrada derecha de combinación de mezcla].Columns[id_tiempo]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino de OLE DB"
+                  name="Destino de OLE DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">[dbo].[Fact_Productividad]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.DW_Seguro_Total 1]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.DW_Seguro_Total 1]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                      errorOrTruncationOperation="Insertar"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de destino de OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[id_poliza]"
+                          cachedDataType="i4"
+                          cachedName="id_poliza"
+                          cachedSortKeyPosition="1"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_poliza]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla].Columns[id_poliza]" />
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[id_productor]"
+                          cachedDataType="i4"
+                          cachedName="id_productor"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_productor]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla].Columns[id_productor]" />
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[id_tiempo]"
+                          cachedDataType="i4"
+                          cachedName="id_tiempo"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_tiempo]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla].Columns[id_tiempo]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_productividad]"
+                          dataType="i4"
+                          name="id_productividad" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_productor]"
+                          dataType="i4"
+                          name="id_productor" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_poliza]"
+                          dataType="i4"
+                          name="id_poliza" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[id_tiempo]"
+                          dataType="i4"
+                          name="id_tiempo" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[cant_pol]"
+                          dataType="i4"
+                          name="cant_pol" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de destino de OLE DB"
+                      synchronousInputId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar"
+                  componentClassID="Microsoft.Sort"
+                  contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+                  description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+                  name="Ordenar"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Inputs[Entrada de ordenación]"
+                      name="Entrada de ordenación">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Inputs[Entrada de ordenación].Columns[id_poliza]"
+                          cachedDataType="i4"
+                          cachedName="id_poliza"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[id_poliza]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Inputs[Entrada de ordenación].Columns[nro_poliza]"
+                          cachedDataType="i4"
+                          cachedName="nro_poliza"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[nro_poliza]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Inputs[Entrada de ordenación].Columns[nro_certificado]"
+                          cachedDataType="i4"
+                          cachedName="nro_certificado"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[nro_certificado]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Inputs[Entrada de ordenación].Columns[ramo]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ramo"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[ramo]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Inputs[Entrada de ordenación].Columns[cod_productor]"
+                          cachedDataType="i4"
+                          cachedName="cod_productor"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[cod_productor]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación]"
+                      isSorted="true"
+                      name="Salida de ordenación">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[id_poliza]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[id_poliza]"
+                          name="id_poliza"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[id_poliza]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[nro_poliza]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[nro_poliza]"
+                          name="nro_poliza">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[nro_poliza]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[nro_certificado]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[nro_certificado]"
+                          name="nro_certificado">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[nro_certificado]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[ramo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[ramo]"
+                          name="ramo">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[ramo]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[cod_productor]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación].Columns[cod_productor]"
+                          name="cod_productor">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[cod_productor]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1"
+                  componentClassID="Microsoft.Sort"
+                  contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+                  description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+                  name="Ordenar 1"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Inputs[Entrada de ordenación]"
+                      name="Entrada de ordenación">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Inputs[Entrada de ordenación].Columns[id_productor]"
+                          cachedDataType="i4"
+                          cachedName="id_productor"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].Columns[id_productor]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Inputs[Entrada de ordenación].Columns[nombre_productor]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="nombre_productor"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].Columns[nombre_productor]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Outputs[Salida de ordenación]"
+                      isSorted="true"
+                      name="Salida de ordenación">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Outputs[Salida de ordenación].Columns[id_productor]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Outputs[Salida de ordenación].Columns[id_productor]"
+                          name="id_productor"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].Columns[id_productor]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Outputs[Salida de ordenación].Columns[nombre_productor]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Outputs[Salida de ordenación].Columns[nombre_productor]"
+                          name="nombre_productor">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].Columns[nombre_productor]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2"
+                  componentClassID="Microsoft.Sort"
+                  contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+                  description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+                  name="Ordenar 2"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Inputs[Entrada de ordenación]"
+                      name="Entrada de ordenación">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Inputs[Entrada de ordenación].Columns[id_tiempo]"
+                          cachedDataType="i4"
+                          cachedName="id_tiempo"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[id_tiempo]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Inputs[Entrada de ordenación].Columns[anio]"
+                          cachedDataType="i4"
+                          cachedName="anio"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[anio]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Inputs[Entrada de ordenación].Columns[trimestre]"
+                          cachedDataType="i4"
+                          cachedName="trimestre"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[trimestre]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Inputs[Entrada de ordenación].Columns[mes]"
+                          cachedDataType="i4"
+                          cachedName="mes"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[mes]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación]"
+                      isSorted="true"
+                      name="Salida de ordenación">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación].Columns[id_tiempo]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación].Columns[id_tiempo]"
+                          name="id_tiempo"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[id_tiempo]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación].Columns[anio]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación].Columns[anio]"
+                          name="anio">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[anio]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación].Columns[trimestre]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación].Columns[trimestre]"
+                          name="trimestre">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[trimestre]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación].Columns[mes]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación].Columns[mes]"
+                          name="mes">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[mes]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3"
+                  componentClassID="Microsoft.Sort"
+                  contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+                  description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+                  name="Ordenar 3"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Inputs[Entrada de ordenación]"
+                      name="Entrada de ordenación">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Inputs[Entrada de ordenación].Columns[id_poliza]"
+                          cachedDataType="i4"
+                          cachedName="id_poliza"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_poliza]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Inputs[Entrada de ordenación].Columns[id_productor]"
+                          cachedDataType="i4"
+                          cachedName="id_productor"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_productor]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica las opciones de comparación para datos de caracteres."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Especifica el criterio de ordenación de la columna."
+                              name="NewSortKeyPosition">2</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Outputs[Salida de ordenación]"
+                      isSorted="true"
+                      name="Salida de ordenación">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Outputs[Salida de ordenación].Columns[id_poliza]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Outputs[Salida de ordenación].Columns[id_poliza]"
+                          name="id_poliza"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_poliza]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Outputs[Salida de ordenación].Columns[id_productor]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Outputs[Salida de ordenación].Columns[id_productor]"
+                          name="id_productor"
+                          sortKeyPosition="2">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                              name="SortColumnId">#{Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[id_productor]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origen de OLE DB"
+                  name="Origen de OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">[dbo].[Dim_Tiempo]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="Variable que contiene el comando SQL para ejecutar."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Asignaciones entre los parámetros del comando SQL y las variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.DW_Seguro_Total 1]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.DW_Seguro_Total 1]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB]"
+                      name="Salida de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[id_tiempo]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[id_tiempo]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[id_tiempo]"
+                          name="id_tiempo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[anio]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[anio]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[anio]"
+                          name="anio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[trimestre]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[trimestre]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[trimestre]"
+                          name="trimestre"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[mes]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[mes]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[mes]"
+                          name="mes"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[id_tiempo]"
+                          dataType="i4"
+                          name="id_tiempo" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[anio]"
+                          dataType="i4"
+                          name="anio" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[trimestre]"
+                          dataType="i4"
+                          name="trimestre" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[mes]"
+                          dataType="i4"
+                          name="mes" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB]"
+                      isErrorOut="true"
+                      name="Salida de error de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[id_tiempo]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[id_tiempo]"
+                          name="id_tiempo" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[anio]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[anio]"
+                          name="anio" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[trimestre]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[trimestre]"
+                          name="trimestre" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[mes]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[mes]"
+                          name="mes" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origen de OLE DB"
+                  name="Origen Dim Poliza"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">[dbo].[Dim_Poliza]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="Variable que contiene el comando SQL para ejecutar."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Asignaciones entre los parámetros del comando SQL y las variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.DW_Seguro_Total 1]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.DW_Seguro_Total 1]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB]"
+                      name="Salida de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[id_poliza]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].ExternalColumns[id_poliza]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[id_poliza]"
+                          name="id_poliza"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[nro_poliza]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].ExternalColumns[nro_poliza]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[nro_poliza]"
+                          name="nro_poliza"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[nro_certificado]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].ExternalColumns[nro_certificado]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[nro_certificado]"
+                          name="nro_certificado"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[ramo]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].ExternalColumns[ramo]"
+                          length="50"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[ramo]"
+                          name="ramo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[cod_productor]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].ExternalColumns[cod_productor]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].Columns[cod_productor]"
+                          name="cod_productor"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].ExternalColumns[id_poliza]"
+                          dataType="i4"
+                          name="id_poliza" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].ExternalColumns[nro_poliza]"
+                          dataType="i4"
+                          name="nro_poliza" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].ExternalColumns[nro_certificado]"
+                          dataType="i4"
+                          name="nro_certificado" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].ExternalColumns[ramo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ramo" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB].ExternalColumns[cod_productor]"
+                          dataType="i4"
+                          name="cod_productor" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB]"
+                      isErrorOut="true"
+                      name="Salida de error de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[id_poliza]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[id_poliza]"
+                          name="id_poliza" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[nro_poliza]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[nro_poliza]"
+                          name="nro_poliza" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[nro_certificado]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[nro_certificado]"
+                          name="nro_certificado" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[ramo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[ramo]"
+                          name="ramo" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[cod_productor]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[cod_productor]"
+                          name="cod_productor" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origen de OLE DB"
+                  name="Origen Dim Productor"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">[dbo].[Dim_Productor]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="Variable que contiene el comando SQL para ejecutar."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Asignaciones entre los parámetros del comando SQL y las variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.DW_Seguro_Total 1]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.DW_Seguro_Total 1]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB]"
+                      name="Salida de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].Columns[id_productor]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].ExternalColumns[id_productor]"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].Columns[id_productor]"
+                          name="id_productor"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].Columns[nombre_productor]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].ExternalColumns[nombre_productor]"
+                          length="50"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].Columns[nombre_productor]"
+                          name="nombre_productor"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].ExternalColumns[id_productor]"
+                          dataType="i4"
+                          name="id_productor" />
+                        <externalMetadataColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB].ExternalColumns[nombre_productor]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="nombre_productor" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de error de origen de OLE DB]"
+                      isErrorOut="true"
+                      name="Salida de error de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de error de origen de OLE DB].Columns[id_productor]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de error de origen de OLE DB].Columns[id_productor]"
+                          name="id_productor" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de error de origen de OLE DB].Columns[nombre_productor]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de error de origen de OLE DB].Columns[nombre_productor]"
+                          name="nombre_productor" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de combinación de mezcla]"
+                  endId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Inputs[Entrada de ordenación]"
+                  name="Salida de combinación de mezcla"
+                  startId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Outputs[Salida de combinación de mezcla]" />
+                <path
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de combinación de mezcla1]"
+                  endId="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  name="Salida de combinación de mezcla"
+                  startId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Outputs[Salida de combinación de mezcla]" />
+                <path
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de ordenación]"
+                  endId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+                  name="Salida de ordenación"
+                  startId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Outputs[Salida de ordenación]" />
+                <path
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de ordenación1]"
+                  endId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+                  name="Salida de ordenación"
+                  startId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Outputs[Salida de ordenación]" />
+                <path
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de ordenación2]"
+                  endId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Inputs[Entrada izquierda de combinación de mezcla]"
+                  name="Salida de ordenación"
+                  startId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3.Outputs[Salida de ordenación]" />
+                <path
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de ordenación3]"
+                  endId="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1.Inputs[Entrada derecha de combinación de mezcla]"
+                  name="Salida de ordenación"
+                  startId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Outputs[Salida de ordenación]" />
+                <path
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de origen de OLE DB]"
+                  endId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar.Inputs[Entrada de ordenación]"
+                  name="Salida de origen de OLE DB"
+                  startId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza.Outputs[Salida de origen de OLE DB]" />
+                <path
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de origen de OLE DB1]"
+                  endId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1.Inputs[Entrada de ordenación]"
+                  name="Salida de origen de OLE DB"
+                  startId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor.Outputs[Salida de origen de OLE DB]" />
+                <path
+                  refId="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de origen de OLE DB2]"
+                  endId="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2.Inputs[Entrada de ordenación]"
+                  name="Salida de origen de OLE DB"
+                  startId="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos"
+          TopLeft="70,72" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="595,300"
+          Size="595,343"
+          Id="Package\Dimension FT Productividad"
+          TopLeft="54,68" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Dimension FT Productividad\Tarea Flujo de datos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza"
+          TopLeft="76,47" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor"
+          TopLeft="267,45" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar"
+          TopLeft="98,148" />
+        <EdgeLayout
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de origen de OLE DB]"
+          TopLeft="156.75,89">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 1"
+          TopLeft="291,145" />
+        <EdgeLayout
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de origen de OLE DB1]"
+          TopLeft="355.75,87">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla"
+          TopLeft="174,266" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB"
+          TopLeft="427,260" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 2"
+          TopLeft="444,335" />
+        <EdgeLayout
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de origen de OLE DB2]"
+          TopLeft="508,302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de ordenación]"
+          TopLeft="156.5,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="82.1666666666667,76"
+              Start="0,0"
+              End="82.1666666666667,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.2192066805846" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.2192066805846"
+                    Point2="0,45.2192066805846"
+                    Point3="4,45.2192066805846" />
+                  <mssgle:LineSegment
+                    End="78.1666666666667,45.2192066805846" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78.1666666666667,45.2192066805846"
+                    Point2="82.1666666666667,45.2192066805846"
+                    Point3="82.1666666666667,49.2192066805846" />
+                  <mssgle:LineSegment
+                    End="82.1666666666667,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de ordenación1]"
+          TopLeft="354,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-54.6666666666667,79"
+              Start="0,0"
+              End="-54.6666666666667,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.0041753653445" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.0041753653445"
+                    Point2="0,47.0041753653445"
+                    Point3="-4,47.0041753653445" />
+                  <mssgle:LineSegment
+                    End="-50.6666666666667,47.0041753653445" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-50.6666666666667,47.0041753653445"
+                    Point2="-54.6666666666667,47.0041753653445"
+                    Point3="-54.6666666666667,51.0041753653445" />
+                  <mssgle:LineSegment
+                    End="-54.6666666666667,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos\Combinación de mezcla 1"
+          TopLeft="269,423" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos\Ordenar 3"
+          TopLeft="200,333" />
+        <EdgeLayout
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de combinación de mezcla]"
+          TopLeft="266,308">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25"
+              Start="0,0"
+              End="0,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de ordenación2]"
+          TopLeft="263,375">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.6666666666667,48"
+              Start="0,0"
+              End="73.6666666666667,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5702891326022" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5702891326022"
+                    Point2="0,28.5702891326022"
+                    Point3="4,28.5702891326022" />
+                  <mssgle:LineSegment
+                    End="69.6666666666667,28.5702891326022" />
+                  <mssgle:CubicBezierSegment
+                    Point1="69.6666666666667,28.5702891326022"
+                    Point2="73.6666666666667,28.5702891326022"
+                    Point3="73.6666666666667,32.5702891326022" />
+                  <mssgle:LineSegment
+                    End="73.6666666666667,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de ordenación3]"
+          TopLeft="507,377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-106.666666666667,46"
+              Start="0,0"
+              End="-106.666666666667,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.3798604187438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.3798604187438"
+                    Point2="0,27.3798604187438"
+                    Point3="-4,27.3798604187438" />
+                  <mssgle:LineSegment
+                    End="-102.666666666667,27.3798604187438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-102.666666666667,27.3798604187438"
+                    Point2="-106.666666666667,27.3798604187438"
+                    Point3="-106.666666666667,31.3798604187438" />
+                  <mssgle:LineSegment
+                    End="-106.666666666667,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB"
+          TopLeft="282,490" />
+        <EdgeLayout
+          Id="Package\Dimension FT Productividad\Tarea Flujo de datos.Paths[Salida de combinación de mezcla1]"
+          TopLeft="367.25,465">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25"
+              Start="0,0"
+              End="0,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Poliza">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen Dim Productor">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimension FT Productividad\Tarea Flujo de datos\Origen de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimension FT Productividad\Tarea Flujo de datos\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
